@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPost from "../components/BlogPost.astro";
+import PostPreviewList from "../components/PostPreviewList.astro";
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const pageTitle = "My Astro Learning Blog";
+
+console.log(allPosts[0].frontmatter.pubDate);
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <p class="text-gray-400 py-4">All the posts so far...</p>
+  <PostPreviewList posts={allPosts} />
+</BaseLayout>

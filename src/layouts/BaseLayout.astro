@@ -1,0 +1,39 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link href="/prism-night-owl.css" rel="stylesheet" />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="antialiased min-h-screen bg-gray-100 dark:bg-gray-800">
+    <br class="my-4" />
+    <Header />
+    <h1 class="main__layout page__title">{pageTitle}</h1>
+    <main class="content main__layout">
+      <slot />
+    </main>
+    <br class="my-4" />
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
+  </body>
+
+  <style>
+    .content {
+      min-height: 580px;
+    }
+    .page__title {
+      @apply text-5xl font-extrabold text-theme-primary dark:text-theme-dark-primary;
+    }
+  </style>
+</html>
