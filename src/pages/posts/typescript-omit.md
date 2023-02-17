@@ -2,11 +2,11 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "TypeScript: Understanding how Omit = Pick + Exclude"
 author: "author"
-pubDate: "2022-12-21"
+pubDate: 2022-12-21
 description: "Explain how Omit is equivalent to Pick and Exclude"
 image:
-  url: "https://docs.astro.build/default-og-image.png"
-  alt: "The word “astro” against an illustration of planets and stars."
+  url: ""
+  alt: ""
 tags: ["typescript"]
 ---
 

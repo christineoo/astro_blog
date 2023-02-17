@@ -7,14 +7,14 @@ const disabledCss = {
   "blockquote p:first-of-type::before": false,
   "blockquote p:last-of-type::after": false,
   pre: false,
-  code: false,
+  // code: false,
   "pre code": false,
   "pre div": false,
   "code::before": false,
   "code::after": false,
   a: {
     "&:hover": {
-      color: "red",
+      color: colors.purple[700],
     },
   },
 };

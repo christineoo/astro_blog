@@ -12,9 +12,6 @@ export default defineConfig({
     // Example: Switch to use prism for syntax highlighting in Markdown
     syntaxHighlight: "prism",
     remarkPlugins: [remarkToc, remarkGemoji],
-    prismConfig: {
-      theme: "tomorrow",
-    },
     rehypePlugins: [rehypeHeadingIds],
   },
   integrations: [tailwind()],

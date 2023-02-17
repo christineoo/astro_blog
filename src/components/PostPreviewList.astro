@@ -2,10 +2,10 @@
 import PostPreview from "./PostPreview.astro";
 const { posts } = Astro.props;
 
-console.log(posts);
 const sortedPosts = posts.sort(
-  (a, b) => new Date(b.pubDate) - new Date(a.pubDate)
+  (a, b) => Date.parse(b.frontmatter.pubDate) - Date.parse(a.frontmatter.pubDate)
 );
+
 ---
 
 <section class="post-preview__list">

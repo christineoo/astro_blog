@@ -1,9 +1,10 @@
 ---
-import BaseLayout from "./BaseLayout.astro";
-import Prose from "../components/Prose.astro";
-import SvgIcon from "../components/SvgIcon.astro";
+import BaseLayout from './BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import SvgIcon from '../components/SvgIcon.astro';
 const { frontmatter, headings } = Astro.props;
 const { title, pubDate, description, author, image, tags } = frontmatter;
+
 ---
 
 <BaseLayout pageTitle={title}>
@@ -32,7 +33,7 @@ const { title, pubDate, description, author, image, tags } = frontmatter;
         <p class="tag">
           <a href={`/tags/${tag}`}>
             {tag}
-            {i < tags.length - 1 ? "," : ""}
+            {i < tags.length - 1 ? ',' : ''}
           </a>
         </p>
       ))
@@ -40,14 +41,14 @@ const { title, pubDate, description, author, image, tags } = frontmatter;
   </div>
   <div class="date">
     {
-      new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
+      new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(
         new Date(pubDate)
       )
     }
   </div>
   <!-- <p>Written by {frontmatter.author}</p> -->
-  <img src={image.url} width="300" alt={image.alt} />
-
+  {image.url && <img src={image.url} width="300" alt={image.alt} />}
+  <br />
   <Prose>
     <slot />
   </Prose>

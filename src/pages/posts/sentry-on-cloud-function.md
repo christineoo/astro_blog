@@ -2,11 +2,11 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "Sentry on Google Cloud Function (Python)"
 author: "author"
-pubDate: "2022-06-20"
+pubDate: 2022-06-20
 description: "Setup Sentry on Cloud Function and how to debug when exceptions are not captured on Sentry."
 image:
-  url: "https://docs.astro.build/default-og-image.png"
-  alt: "The word “astro” against an illustration of planets and stars."
+  url: ""
+  alt: ""
 tags: ["cloud function", "sentry", "python"]
 ---
 
@@ -61,7 +61,7 @@ sentry_sdk.init(
 
 After **debug** is enabled, sentry related logs can be seen in Google Cloud Console.
 
-![Google Cloud Function (Click on the LOGS tab to access the logs)](/images/m0vrw2p4wzh003q7qqvw686l3ghz.png)
+![Google Cloud Function (Click on the LOGS tab to access the logs)](https://bloggie.io/images/m0vrw2p4wzh003q7qqvw686l3ghz.png)
 
 Ah ha...~! Found a line in the log that says **"GcpIntegration currently supports only Python 3.7 runtime environment."** ([code reference](https://github.com/getsentry/sentry-python/blob/master/sentry_sdk/integrations/gcp.py#L132-L134)). My Cloud Function is using Python 3.8, wished this warning is stated more clearly in the documentation. 😞
 
@@ -70,7 +70,7 @@ Ah ha...~! Found a line in the log that says **"GcpIntegration currently support
 1. Downgrade to **Python 3.7** runtime OR
 2. Use the [serverless_function](https://docs.sentry.io/platforms/python/guides/serverless/) decorator.
 
-```python
+```python {2,6}
 import sentry_sdk
 from sentry_sdk.integrations.serverless import serverless_function
 
