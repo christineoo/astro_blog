@@ -7,12 +7,19 @@ import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
+import partytown from "@astrojs/partytown";
+
+// https://astro.build/config
 export default defineConfig({
   markdown: {
     // Example: Switch to use prism for syntax highlighting in Markdown
     syntaxHighlight: "prism",
     remarkPlugins: [remarkToc, remarkGemoji],
-    rehypePlugins: [rehypeHeadingIds],
+    rehypePlugins: [rehypeHeadingIds]
   },
-  integrations: [tailwind()],
+  integrations: [tailwind(), partytown({
+    config: {
+      forward: ["dataLayer.push"]
+    }
+  })]
 });
