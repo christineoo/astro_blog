@@ -10,6 +10,12 @@ import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
+import robotsTxt from "astro-robots-txt";
+
+// https://astro.build/config
 export default defineConfig({
   markdown: {
     // Example: Switch to use prism for syntax highlighting in Markdown
@@ -17,9 +23,10 @@ export default defineConfig({
     remarkPlugins: [remarkToc, remarkGemoji],
     rehypePlugins: [rehypeHeadingIds]
   },
+  site: "https://astro-blog-1234.netlify.app",
   integrations: [tailwind(), partytown({
     config: {
       forward: ["dataLayer.push"]
     }
-  })]
+  }), sitemap(), robotsTxt()]
 });
