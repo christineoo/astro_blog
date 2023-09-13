@@ -12,7 +12,7 @@ tags: ["tslint", "typescript"]
 
 Adding linters would help to make your project more robust as it might be able to catch programming errors, bugs, typos and etc. If you are using Typescript, you could use [TSLint](https://palantir.github.io/tslint/) to lint your project. The full list of lint rules are available [here](https://palantir.github.io/tslint/rules/). Besides that, you could also write custom lint rules for your own project needs.
 
-####  Multiple tslint.json 
+#### Multiple tslint.json
 
 A project can have multiple `tslint.json` configurations. For example, a `tslint.json` configuration for different environment mode.
 
@@ -24,12 +24,12 @@ In _development_ mode :computer: , the rules below are needed.
     "no-any": true,
     "no-console": false,
     "no-debugger": false,
-    "no-null-keyword": true,
+    "no-null-keyword": true
   }
 }
 ```
 
-In _production_ mode  :rocket: , the rules below are needed instead.
+In _production_ mode :rocket: , the rules below are needed instead.
 
 ```json
   "rules": {
@@ -41,8 +41,7 @@ In _production_ mode  :rocket: , the rules below are needed instead.
 }
 ```
 
-
-If you noticed, there are some duplicated rules in the `tslint.*.json`. We want the **no-console** and **no-debugger** rules to be enabled in _development_ but disabled for _production_.  On the other hand, the **no-any** and **no-null-keyword** rules are set to **true** and is being duplicated in each of the configuration files.   We are all aware of the DRY principles :recycle: , so it would be nice if we could remove the duplicated rules! 
+If you noticed, there are some duplicated rules in the `tslint.*.json`. We want the **no-console** and **no-debugger** rules to be enabled in _development_ but disabled for _production_. On the other hand, the **no-any** and **no-null-keyword** rules are set to **true** and is being duplicated in each of the configuration files. We are all aware of the DRY principles :recycle: , so it would be nice if we could remove the duplicated rules!
 
 #### 'extends' field to the rescue
 
@@ -54,8 +53,7 @@ The `extends` field is an optional field in the tslint configuration that accept
 
 So, let's see how we could refactor the tslint configuration file to utilize the `extends` field.
 
-1. Let's create a `tslint.json` configuration that contains all the required rules for _development_ mode :computer: 
-
+1. Let's create a `tslint.json` configuration that contains all the required rules for _development_ mode :computer:
 
 ```json
 {
@@ -63,7 +61,7 @@ So, let's see how we could refactor the tslint configuration file to utilize the
     "no-any": true,
     "no-console": false,
     "no-debugger": false,
-    "no-null-keyword": true,
+    "no-null-keyword": true
   }
 }
 ```
@@ -75,12 +73,11 @@ So, let's see how we could refactor the tslint configuration file to utilize the
   "extends": "./tslint.json",
   "rules": {
     "no-console": true,
-    "no-debugger": true,
+    "no-debugger": true
   }
 }
 ```
 
-You're all set~! :tada: The **no-any** and **no-null-keyword** are no longer duplicated and now we have a cleaner tslint configuration file. 
+You're all set~! :tada: The **no-any** and **no-null-keyword** are no longer duplicated and now we have a cleaner tslint configuration file.
 
-
-Hope you find this post useful and happy linting~ :police_car: :policeman: 
+Hope you find this post useful and happy linting~ :police_car: :policeman:

@@ -21,12 +21,17 @@ export default defineConfig({
     // Example: Switch to use prism for syntax highlighting in Markdown
     syntaxHighlight: "prism",
     remarkPlugins: [remarkToc, remarkGemoji],
-    rehypePlugins: [rehypeHeadingIds]
+    rehypePlugins: [rehypeHeadingIds],
   },
   site: "https://astro-blog-1234.netlify.app",
-  integrations: [tailwind(), partytown({
-    config: {
-      forward: ["dataLayer.push"]
-    }
-  }), sitemap(), robotsTxt()]
+  integrations: [
+    tailwind(),
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+    sitemap(),
+    robotsTxt(),
+  ],
 });

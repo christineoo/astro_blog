@@ -8,8 +8,7 @@ export const SITE = {
   url: "",
   githubUrl: "https://github.com/christineoo/astro_blog",
   listDrafts: true,
-  image:
-    "astro-banner.png",
+  image: "astro-banner.png",
   // YT video channel Id (used in media.astro)
   ytChannelId: "",
   // Optional, user/author settings (example)
@@ -18,7 +17,7 @@ export const SITE = {
   // Author: Twitter handler
   authorTwitter: "", // Example: asdf
   // Author: Image external source
-  authorImage: "", // Example: asdf.png 
+  authorImage: "", // Example: asdf.png
 };
 
 export const NAV_ITEMS: NavItems = {

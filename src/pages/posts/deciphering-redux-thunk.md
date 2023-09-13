@@ -10,11 +10,11 @@ image:
 tags: ["reactJS", "typescript", "redux-thunk"]
 ---
 
-This blog post will be focusing on explaining the TypeScript definition of `ThunkAction` which is used in the redux-thunk library. If you're not sure what redux-thunk is, I'd recommend reading through the [why do I need this](https://github.com/reduxjs/redux-thunk#why-do-i-need-this) section in the redux-thunk library. Then, come back to this blog post to learn about the TypeScript definition of `ThunkAction`.  I also highly recommend reading [what is a thunk](https://daveceddia.com/what-is-a-thunk/). 
+This blog post will be focusing on explaining the TypeScript definition of `ThunkAction` which is used in the redux-thunk library. If you're not sure what redux-thunk is, I'd recommend reading through the [why do I need this](https://github.com/reduxjs/redux-thunk#why-do-i-need-this) section in the redux-thunk library. Then, come back to this blog post to learn about the TypeScript definition of `ThunkAction`. I also highly recommend reading [what is a thunk](https://daveceddia.com/what-is-a-thunk/).
 
 Hope you've check out the materials recommended above before you continue reading 👀 💭
 
-However, if you're interested in learning TypeScript's type aliases, I think you would enjoy this blog post as well. I will be explaining how type aliases are being used in a more complex type definition. 
+However, if you're interested in learning TypeScript's type aliases, I think you would enjoy this blog post as well. I will be explaining how type aliases are being used in a more complex type definition.
 
 Let's dive in head-on then by looking at the type definition of `ThunkAction`.
 
@@ -22,13 +22,14 @@ Let's dive in head-on then by looking at the type definition of `ThunkAction`.
 export type ThunkAction<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
   getState: () => S,
-  extraArgument: E
+  extraArgument: E,
 ) => R;
 ```
 
 The definition of `ThunkAction` can be overwhelming and filled with generics(defined with `<>`). The TypeScript's **type aliases** is used here. Before moving further, I'd like to dig into what is **type aliases** first.
 
 📝 The snippet below is taken from [TypeScript handbook-advance-types(type aliases)](https://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)
+
 ```ts
 type Name = string;
 type NameResolver = () => string;
@@ -36,15 +37,14 @@ type NameOrResolver = Name | NameResolver;
 function getName(n: NameOrResolver): Name {
   if (typeof n === "string") {
     return n;
-  }
-  else {
+  } else {
     return n();
   }
 }
 
 // 🙆
-const getNameMethod = () => 'John';
-console.log(getName('Mary')); // Mary
+const getNameMethod = () => "John";
+console.log(getName("Mary")); // Mary
 console.log(getName(getNameMethod)); // John
 
 // 🙅
@@ -66,28 +66,34 @@ The definition of `ThunkAction` is complicated and it is hard to understand how 
 export type ThunkAction<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
   getState: () => S,
-  extraArgument: E
+  extraArgument: E,
 ) => R;
 
 // The simplified form of ThunkAction type definition
-export type ThunkAction<generics> = (dispatch, getState, extraArgument) => ReturnType;
+export type ThunkAction<generics> = (
+  dispatch,
+  getState,
+  extraArgument,
+) => ReturnType;
 ```
 
 Now that the definition is simplified, the generics passed to `ThunkAction` type can be tackled more easily.
 
-* type **ThunkAction<R>**
+- type **ThunkAction<R>**
+
 ```ts
-type ThunkAction<R> = (dispatch, getState, extraArgument) => R
+type ThunkAction<R> = (dispatch, getState, extraArgument) => R;
 
 // This would make R the return type of the `ThunkAction` method.
 ```
 
-  * type **ThunkAction<R, S, E, A extends Action>**
+- type **ThunkAction<R, S, E, A extends Action>**
+
 ```ts
 type ThunkAction<R, S, E, A extends Action> = (
   dispatch: ThunkDispatch<S, E, A>,
   getState: () => S,
-  extraArgument: E
+  extraArgument: E,
 ) => R;
 
 /* 
@@ -102,38 +108,41 @@ type ThunkAction<R, S, E, A extends Action> = (
       that must have a `type` field.) Action type is defined in the redux typings.
   */
 ```
-  
-  ***
+
+---
 
 #### Usage example
-  
- After understanding the typings of ThunkAction, I would like to share an example of how `ThunkAction` can be used in your TypeScript code. 
-  
+
+After understanding the typings of ThunkAction, I would like to share an example of how `ThunkAction` can be used in your TypeScript code.
+
 ```ts
-  import { ThunkAction } from 'redux-thunk';
-  
-  export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
-  // R = void
-  // S = RootState
-  // E = null
-  // A = Action<string>
+import { ThunkAction } from "redux-thunk";
+
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
+// R = void
+// S = RootState
+// E = null
+// A = Action<string>
 ```
-  
+
 ```ts
-  export const fetchUser = (id: string): AppThunk => async dispatch => {
+export const fetchUser =
+  (id: string): AppThunk =>
+  async (dispatch) => {
     try {
       // handle fetch success
     } catch (err) {
       // handle fetch failure
     }
-  }
+  };
 ```
-  
- Thanks for reading and happy typings~ 👋
-  
-  ***
-  
+
+Thanks for reading and happy typings~ 👋
+
+---
+
 #### References
+
 - [reduxjs/redux github repository](https://github.com/reduxjs/redux)
 - [reduxjs/redux thunk github repository](https://github.com/reduxjs/redux-thunk)
 - [Make typings compatible with Redux 4.0.0](https://github.com/reduxjs/redux-thunk/pull/180)

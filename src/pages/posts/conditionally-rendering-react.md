@@ -15,17 +15,18 @@ When creating a new React component, we sometimes ran into a situation whereby w
 Thankfully, TypeScript comes with some features that we could make use of to type these components. We'll be exploring a naive and a more effective approach in this article.
 
 #### Option 1: (🙅)
+
 Using the optional operator (`?`) . Referring to the example below, when `item1` property exist, then render `ComponentA` else render `ComponentB`. This works as expected. However, it's not a good approach.
 
 1. What if you have more props (`item3`, `item4`, `item5`, `item-n`), `GeneralType` will quickly become messy.
-2. It's not obvious which property that you have defined in the `GeneralType` belongs to `ComponentA` or `ComponentB`. 
+2. It's not obvious which property that you have defined in the `GeneralType` belongs to `ComponentA` or `ComponentB`.
 
 ```ts
 type GeneralType = {
   item1?: string;
   item2: number;
  };
- 
+
 const GeneralComponent = (props: GeneralType) => {
   if (props.item1) {
     return <ComponentA {...props} />
@@ -37,18 +38,18 @@ const GeneralComponent = (props: GeneralType) => {
 
 #### Option 2: (🙆)
 
-The recommended approach.  This approach uses the union type and type guards from TypeScript. 
- 
+The recommended approach. This approach uses the union type and type guards from TypeScript.
+
 ```ts
 type ComponentAType = {
   item1: string;
   item2: number;
  };
- 
+
 type ComponentBType = {
   item2: number;
  };
- 
+
 // using union type
 type GeneralType = ComponentAType | ComponentBType;
 
@@ -67,8 +68,7 @@ const GeneralComponent = (props: GeneralType) => {
 };
 ```
 
-
-The union type defined using the vertical bar(`|`). We are letting TypeScript knows that `GeneralComponent` can be of type `ComponentAType` or `ComponentBType`. 
+The union type defined using the vertical bar(`|`). We are letting TypeScript knows that `GeneralComponent` can be of type `ComponentAType` or `ComponentBType`.
 
 ```ts
 type GeneralType = ComponentAType | ComponentBType;
@@ -80,13 +80,13 @@ Now, we can properly defined the types for `ComponentAType` and `ComponentBType`
 type ComponentAType = {
   item1: string;
   item2: number;
- };
- 
+};
+
 type ComponentBType = {
   item2: number;
- };
+};
 ```
- 
+
 Moving on to type guards. 💂‍♀
 
 ```ts
@@ -107,6 +107,5 @@ const Dummy1 = () => <GeneralComponent item1={"asdf"} item2={2} />;
 // ComponentB will be rendered
 const Dummy2 = () => <GeneralComponent item2={2} />;
 ```
-
 
 Hope that you find it useful and would adapt it to your codebase. Thank you for reading~! 😎👋
