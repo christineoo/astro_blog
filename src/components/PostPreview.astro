@@ -1,5 +1,5 @@
 ---
-const { frontmatter: post, url } = Astro.props.post;
+const { frontmatter: post, url, minutesRead } = Astro.props.post;
 
 const MONTHS = [
   "Jan",
@@ -16,6 +16,9 @@ const MONTHS = [
   "Dec",
 ];
 const getMonthName = (date: Date) => MONTHS[new Date(date).getMonth()];
+
+console.log(url)
+console.log(post.minutesRead)
 ---
 
 <div class="post-preview">
