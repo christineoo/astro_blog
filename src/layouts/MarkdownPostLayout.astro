@@ -4,6 +4,7 @@ import Prose from '../components/Prose.astro';
 import SvgIcon from '../components/SvgIcon.astro';
 const { frontmatter, headings } = Astro.props;
 const { title, pubDate, description, author, image, tags, minutesRead } = frontmatter;
+import Comments from "../components/Comments.tsx";
 
 ---
 
@@ -16,7 +17,7 @@ const { title, pubDate, description, author, image, tags, minutesRead } = frontm
       </>
     ))
   } -->
-  <div class="flex gap-x-4 text-gray-400 items-center">
+  <div class="flex gap-x-4 text-gray-400 items-center my-4">
     <text>
       {
         new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(
@@ -57,6 +58,8 @@ const { title, pubDate, description, author, image, tags, minutesRead } = frontm
   <Prose>
     <slot />
   </Prose>
+  <br class="my-4" />
+  <Comments client:idle />
 </BaseLayout>
 
 <style>

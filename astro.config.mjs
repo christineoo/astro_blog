@@ -3,7 +3,7 @@ import remarkToc from "remark-toc";
 import remarkGemoji from "remark-gemoji";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import { remarkReadingTime } from "./src/utils/calculate-reading-time.ts";
-
+import react from "@astrojs/react";
 
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";
@@ -23,10 +23,11 @@ export default defineConfig({
     // Example: Switch to use prism for syntax highlighting in Markdown
     syntaxHighlight: "prism",
     remarkPlugins: [remarkToc, remarkGemoji, remarkReadingTime],
-    rehypePlugins: [rehypeHeadingIds]
+    rehypePlugins: [rehypeHeadingIds],
   },
   site: "https://astro-blog-1234.netlify.app",
   integrations: [
+    react(),
     tailwind(),
     partytown({
       config: {
