@@ -31,7 +31,7 @@ const Comments = () => {
           inputPosition="top"
           lang="en"
           loading="lazy"
-          theme={theme ? JSON.parse(theme) : 'dark'}
+          theme={JSON.parse(theme)}
         />
       ) : null}
     </div>
