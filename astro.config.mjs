@@ -4,6 +4,8 @@ import remarkGemoji from "remark-gemoji";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import { remarkReadingTime } from "./src/utils/calculate-reading-time.ts";
 import react from "@astrojs/react";
+import rehypePrettyCode from "rehype-pretty-code";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 import tailwind from "@astrojs/tailwind";
@@ -20,13 +22,14 @@ import robotsTxt from "astro-robots-txt";
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-    // Example: Switch to use prism for syntax highlighting in Markdown
-    syntaxHighlight: "prism",
+    // extendDefaultPlugins: true,
+    syntaxHighlight: false,
     remarkPlugins: [remarkToc, remarkGemoji, remarkReadingTime],
-    rehypePlugins: [rehypeHeadingIds],
+    rehypePlugins: [rehypeHeadingIds, rehypePrettyCode],
   },
   site: "https://astro-blog-1234.netlify.app",
   integrations: [
+    mdx(),
     react(),
     tailwind(),
     partytown({

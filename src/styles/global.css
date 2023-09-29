@@ -10,6 +10,8 @@ body {
   padding: 1rem;
   line-height: 1.5;
 } */
+@import "./syntax-highlighting.css";
+
 @tailwind base;
 /* https://github.com/tailwindlabs/tailwindcss/discussions/2917 */
 @layer base {
