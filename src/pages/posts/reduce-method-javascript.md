@@ -42,7 +42,7 @@ const sumWithInitial = nums.reduce(
     }
 );
 ​
-    console.log(sumWithInitial); // 10
+console.log(sumWithInitial); // 10
 ```
 
 ​

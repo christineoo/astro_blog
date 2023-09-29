@@ -20,7 +20,7 @@ import Comments from "../components/Comments.tsx";
   <div class="flex gap-x-4 text-gray-400 items-center my-4">
     <text>
       {
-        new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(
+        new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(
           new Date(pubDate)
         )
       } 
@@ -43,7 +43,7 @@ import Comments from "../components/Comments.tsx";
       </SvgIcon> -->
       {
         tags.map((tag, i) => (
-          <p class="tag border rounded p-1">
+          <p class="tag border rounded p-1 text-sm">
             <a href={`/tags/${tag}`}>
               {tag}
             </a>
@@ -59,7 +59,7 @@ import Comments from "../components/Comments.tsx";
     <slot />
   </Prose>
   <br class="my-4" />
-  <Comments client:idle />
+  <Comments client:only />
 </BaseLayout>
 
 <style>

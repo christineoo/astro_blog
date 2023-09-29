@@ -5,12 +5,14 @@ const id = "comments";
 
 const Comments = () => {
   const [mounted, setMounted] = React.useState(false);
-  const [theme, setTheme] = React.useState(localStorage.getItem("theme"));
+  const [theme, setTheme] = React.useState(
+    window.localStorage.getItem("theme"),
+  );
 
   React.useEffect(() => {
     setMounted(true);
     function handleThemeUpdate() {
-      setTheme(localStorage.getItem("theme"));
+      setTheme(window.localStorage.getItem("theme"));
     }
     window.addEventListener("themeUpdated", handleThemeUpdate);
     return () => window.removeEventListener("themeUpdated", handleThemeUpdate);

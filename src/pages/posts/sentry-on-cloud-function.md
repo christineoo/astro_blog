@@ -16,11 +16,11 @@ Sentry can be added to your Google Cloud Function to help with debugging in your
 
 First, add the `sentry-sdk` to your `requirements.txt` and then use the GCP Functions integration provided by the sentry-sdk.
 
-```
+```txt title="requirements.txt"
 sentry_sdk==1.5.12
 ```
 
-```python
+```python title="main.py"
 import sentry_sdk
 from sentry_sdk.integrations.gcp import GcpIntegration
 
@@ -48,7 +48,7 @@ From the documentation:
 
 There is a debug option that we can enabled.
 
-```python
+```python {7} title="main.py"
 import sentry_sdk
 from sentry_sdk.integrations.gcp import GcpIntegration
 
@@ -70,7 +70,7 @@ Ah ha...~! Found a line in the log that says **"GcpIntegration currently support
 1. Downgrade to **Python 3.7** runtime OR
 2. Use the [serverless_function](https://docs.sentry.io/platforms/python/guides/serverless/) decorator.
 
-```python {2,6}
+```python {2,5} title="main.py"
 import sentry_sdk
 from sentry_sdk.integrations.serverless import serverless_function
 
